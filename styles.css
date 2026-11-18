@@ -1,9 +1,344 @@
-body{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0; 
-}
 
-.bi-cake{
-    color:black
+/* ============================================================
+   TIPS FOR WHEN THINGS GET TEDIOUS
+ 
+   1. Change colors ONLY in the :root block just below. Every
+      color on the site reads from those variables.
+   2. Order matters in CSS. If two rules disagree, the one lower
+      in the file wins. That is why the phone rules sit at the
+      very bottom. Keep them there.
+   3. Class names here must match class="..." in index.html
+      exactly (.landscape-img here = class="landscape-img" there).
+      If you rename one, rename it in both files.
+   4. Every { needs a closing } and every declaration ends with
+      a semicolon. One missing character can break everything
+      below it.
+   5. Press F12 in the browser and click an element to see which
+      CSS rules affect it. Crossed-out rules are being overridden.
+   6. To adjust which part of the header photo shows, change
+      --hero-focus in the .hero rule. To darken or lighten its
+      green tint, change --hero-tint.
+   7. Save, refresh, and change one thing at a time.
+   ============================================================ */
+ 
+/* ---------- Color palette (change these to restyle the whole site) ---------- */
+:root {
+  --forest:      #1f4d2b;  /* header, footer, navbar */
+  --forest-dark: #163a20;
+  --charcoal:    #3a3a3a;  /* section background option 1 */
+  --slate:       #2b2b2b;  /* section background option 2 (darker) */
+  --umber:       #43372f;  /* section background option 3 (warm autumn brown-grey) */
+  --moss:        #333b2e;  /* section background option 4 (mossy green-grey) */
+  --card-grey:   #474747;  /* cards sit slightly lighter than the page */
+  --rust:        #b5541c;  /* autumn accent: buttons */
+  --rust-hover:  #9a4515;
+  --amber:       #e0a458;  /* autumn accent: headings, links */
+  --tan:         #d8c3a5;  /* soft neutral for small text */
+  --white:       #ffffff;
 }
+ 
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+ 
+body {
+  background-color: var(--charcoal);
+  color: var(--white);
+  padding-top: 56px;            /* keeps content from hiding under the fixed navbar */
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.7;
+}
+ 
+h1, h2, h3, h4, h5, h6, .navbar, .btn {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+ 
+section {
+  scroll-margin-top: 56px;      /* anchor links land below the navbar */
+}
+ 
+a {
+  color: var(--amber);
+}
+ 
+/* ---------- Forest green areas ---------- */
+.bg-forest {
+  background-color: var(--forest) !important;
+  color: var(--white);
+}
+ 
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--amber);
+}
+ 
+/* ---------- Section background options ----------
+   Put any of these classes on a <section> in index.html to switch its background. */
+.bg-charcoal { background-color: var(--charcoal); }
+.bg-slate    { background-color: var(--slate); }
+.bg-umber    { background-color: var(--umber); }
+.bg-moss     { background-color: var(--moss); }
+ 
+/* ---------- Header (hero) with flower background image ----------
+   Change the photo in index.html (the <img class="hero-img"> tag).
+   Change WHICH PART of the photo shows with --hero-focus.
+   Change how dark the green tint is with --hero-tint. */
+.hero {
+  --hero-focus: center 40%;             /* "x y" position. Try: center top, center bottom, 20% 60% */
+  --hero-tint: rgba(31, 77, 43, 0.45);  /* forest-green overlay. Raise the last number for darker */
+  position: relative;
+  overflow: hidden;                     /* hides the parts of the photo that don't fit */
+  min-height: clamp(220px, 40vh, 420px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                    /* fills the header, cropping the edges (only part shows) */
+  object-position: var(--hero-focus);
+  z-index: 0;
+}
+ 
+.hero::after {                          /* the green tint on top of the photo */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--hero-tint);
+  z-index: 1;
+}
+ 
+.hero-content {
+  position: relative;                   /* keeps the text above the photo and the tint */
+  z-index: 2;
+}
+ 
+.hero-content p {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);   /* helps white text stay readable on flowers */
+}
+ 
+/* ---------- Projects intro box (formerly "My Goals") ---------- */
+.projects-intro {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-left: 5px solid var(--rust);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.75rem;
+}
+ 
+.projects-intro p:last-child {
+  margin-bottom: 0;
+}
+ 
+/* ---------- Footer ---------- */
+.footer-heading {
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+}
+ 
+.footer-links li {
+  margin-bottom: 0.4rem;
+}
+ 
+.footer-links a {
+  color: var(--white);
+  text-decoration: none;
+}
+ 
+.footer-links a:hover {
+  color: var(--amber);
+  text-decoration: underline;
+}
+ 
+.footer-links i {
+  margin-right: 0.4rem;
+  color: var(--tan);
+}
+ 
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.35);
+  margin: 2rem 0 1rem;
+}
+ 
+/* ---------- Headings ---------- */
+.section-title {
+  color: var(--white);
+  border-bottom: 3px solid var(--rust);
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+ 
+.accent-text {
+  color: var(--amber);
+}
+ 
+.text-muted-light {
+  color: var(--tan);
+}
+ 
+/* ---------- Cards ---------- */
+.card {
+  background-color: var(--card-grey);
+  color: var(--white);
+  border: 1px solid #5a5a5a;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+ 
+.profile-card img {
+  aspect-ratio: 1 / 1;          /* square photo space */
+  object-fit: cover;            /* crops your photo nicely instead of stretching it */
+  background-color: #5a5a5a;    /* shows a grey box until you add your photo */
+}
+ 
+/* Landscape image space for project and hobby cards.
+   REMINDER: every card photo uses this one class, so changing it here changes ALL card photos.
+   Photos are cropped (not stretched) to fit, so crop important subjects toward the center. */
+.landscape-img {
+  aspect-ratio: 16 / 9;         /* wide, horizontal photos */
+  object-fit: cover;            /* crops to fit instead of stretching */
+  width: 100%;
+  max-width: 100%;              /* never wider than the card, so it resizes on any screen */
+  height: auto;                 /* lets the aspect-ratio above control the height */
+  background-color: #5a5a5a;    /* grey box shows until you add a photo */
+}
+ 
+.project-card,
+.hobby-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.project-card:hover,
+.hobby-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+ 
+/* ---------- Photo carousel ---------- */
+.gallery-carousel {
+  border: 1px solid #5a5a5a;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: var(--card-grey);
+}
+ 
+.carousel-img {
+  aspect-ratio: 16 / 9;         /* same landscape shape as the cards */
+  object-fit: cover;
+  background-color: #5a5a5a;
+}
+ 
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.55);   /* dark strip so white text stays readable */
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  bottom: 2.5rem;
+  left: 15%;
+  right: 15%;
+}
+ 
+/* ---------- Buttons ---------- */
+.btn-autumn {
+  background-color: var(--rust);
+  border-color: var(--rust);
+  color: var(--white);
+}
+ 
+.btn-autumn:hover {
+  background-color: var(--rust-hover);
+  border-color: var(--rust-hover);
+  color: var(--white);
+}
+ 
+/* ---------- Touch devices: no hover "lift" on cards (it feels sticky on phones) ---------- */
+@media (hover: none) {
+  .project-card:hover,
+  .hobby-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+ 
+/* REMINDER: keep this phone section at the BOTTOM of the file so it can override the rules above. */
+ 
+/* ---------- Small devices (phones, under 576px wide) ----------
+   Cards already stack one per row (col-12). These rules tighten spacing,
+   text and images so everything fits comfortably on a small screen. */
+@media (max-width: 575.98px) {
+  body {
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+ 
+  /* Header */
+  .hero {
+    min-height: 200px;
+  }
+ 
+  .hero .lead {
+    font-size: 1.05rem;
+    padding: 0 0.5rem;
+  }
+ 
+  /* Less empty space above and below each section */
+  main section.py-5 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+ 
+  .section-title {
+    font-size: 1.6rem;
+  }
+ 
+  /* Projects intro box */
+  .projects-intro {
+    padding: 1.1rem;
+    border-left-width: 4px;
+  }
+ 
+  /* Cards: photos always fit the card width, text gets a little less padding */
+  .profile-card,
+  .project-card,
+  .hobby-card {
+    max-width: 100%;
+  }
+ 
+  .landscape-img {
+    aspect-ratio: 3 / 2;        /* slightly taller on phones so photos don't look squashed */
+  }
+ 
+  .card-body {
+    padding: 1rem;
+  }
+ 
+  .card-title {
+    font-size: 1.1rem;
+  }
+ 
+  .card-text {
+    overflow-wrap: break-word;  /* long words never push the card wider than the screen */
+  }
+ 
+  /* Carousel captions */
+  .carousel-caption {
+    left: 8%;
+    right: 8%;
+    bottom: 2rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+  }
+ 
+  /* Footer */
+  .footer-links a {
+    overflow-wrap: anywhere;    /* long email addresses wrap instead of overflowing */
+  }
+ 
+  .footer-divider {
+    margin: 1.5rem 0 0.75rem;
+  }
+}
+ 

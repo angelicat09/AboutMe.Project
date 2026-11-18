@@ -1,76 +1,563 @@
+
 <!DOCTYPE html>
-<html lang="en">   
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-
-<title>About Me</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angelica's About Me</title>
+ 
+  <!-- Bootstrap 5 CSS + Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+ 
+  <!-- Your custom styles load LAST so they can override Bootstrap -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>  
-
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#"> 
-      <i class="bi bi-cake"></i>
-    </a>
-  </div>
-</nav>
-    <header>
-        <h1>Welcome to My Web Page, my name is Angelica Tovar! </h1>
-      
-    </header>
-
-    <main>
-        <section id="section1">
-            <h2>Hello!</h2>
-            <p>I am a young Chicana from the Mission District in San Francisco. My grandmother and mother were the two women who raised me, 
-                shared their wisdom and experiences with me, and helped develop the person I am today. As a first generation college student, 
-                I contain the power to create a future for myself full of knowledge and growth. As my curiosity has grown, I have deleloped a 
-                passion for understanding. It began with environmental science and a love for nature, but growing older, I grew intruiged how 
-                our environmental surroundings can affect our well-being and accessibility to resources. With courses in Envrionmental Science, 
-                Psychology, Neuroscience, Biology, and Technology, 
-                
-             </p>
-            <p><i class="bi bi-train-lightrail-front"></i></p>
-        </section>
-
-        <section id="section2">
-            <h2>Recent Projects: </h2>
-            <p> I am a pre-apprentice for an organization named Dev/Mission. A young adult wanting to understand all things STEM, I have begun to dive 
-                deep into the world of coding and web development. I have been learning HTML, CSS, and JavaScript to build my own web pages and applications. 
-                Thank you to all the mentors and instructors that have helped me along the way, they helped me build the confidence to ask questions and learn
-                from my mistakes. I hope with my newfound knowledge in tech, I can incorporate my interest for the brain/psychology to contribute to research 
-                and development in the field of neuroscience.
+<body>
+ 
+  <!--
+    ============================================================
+    IMAGE CHECKLIST (all files go in the images/ folder)
+      hero-flowers.jpg         -> header background
+      angelica.jpg             -> About Me profile photo
+      project-webapp.jpg       -> Project 1: SF based off your feelings
+      project-iot.jpg          -> Project 2: IoT Project
+      project-rover.jpg        -> Project 3: Remote Controlled Rover
+      project-ucsf.jpg         -> Project 4: Sleep & Memory Research
+      hobby-bodybuilding.jpg   -> Hobby: Bodybuilding
+      hobby-yoga.jpg           -> Hobby: Yoga
+      hobby-cooking.jpg        -> Hobby: Cooking
+      hobby-thrifting.jpg      -> Hobby: Thrifting & Flipping
+      gallery-1.jpg to gallery-8.jpg -> Photo Gallery carousel
+    ============================================================
+  -->
+ 
+  <!--
+    ============================================================
+    TIPS FOR WHEN THINGS GET TEDIOUS
+ 
+    SWAPPING OR RENAMING IMAGES
+    1. Easiest swap: save your new photo with the SAME file name
+       as the old one and replace the file in images/. No code
+       changes needed.
+    2. If you use a new file name, update it in THREE places:
+       the src="..." on the image, the "IMAGE:" comment above it,
+       and the IMAGE CHECKLIST at the top of this page.
+    3. File names must match exactly. Capital letters count
+       (Photo.jpg is not photo.jpg), and so does the ending
+       (.jpg is not .jpeg). Avoid spaces; use dashes instead.
+    4. The images folder must stay next to index.html. If you move
+       either one, every src="images/..." path will break.
+    5. Whenever the photo changes, rewrite its alt="..." text so it
+       describes the new photo.
+    6. Keep loading="lazy" on the card images. Only the header
+       image uses loading="eager".
+    7. Keep the width and height numbers on each image. The CSS
+       decides the real size on screen, so they only reserve space.
+    8. Crop photos before uploading: landscape for the cards and
+       header, square for your profile photo. Compress big photos
+       (under about 300 KB) so the page loads fast.
+ 
+    MOVING OR ADDING THINGS
+    1. Move whole blocks, never single lines. A card is one block
+       that starts at <div class="col-12 col-md-6"> and ends at its
+       matching </div>. Cut and paste all of it, comments included.
+    2. Every opening <div> needs a closing </div>. If the layout
+       suddenly breaks, a missing or extra </div> is the usual
+       cause. Matching indentation makes it easier to spot.
+    3. Every comment must end with --> <!----. One missing hides
+       everything after it.
+    4. Section ids (about, projects, hobbies, contact) must match
+       the links in the navbar AND the footer. If you rename one,
+       change it in all three places.
+    5. Change one thing at a time, save, then refresh the browser.
+       If something breaks, you know exactly what caused it.
+    6. Keep a backup copy of both files before big changes.
+    7. Press F12 in the browser to see errors, such as an image
+       that can't be found.
+    ============================================================
+  
+ 
+  <-- NAVBAR: forest green, fixed to top, collapses into a hamburger menu on phones -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-forest fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Angelica</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navMenu" aria-controls="navMenu"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- HEADER -->
+   <!--<img src="images/photo1.jpeg" alt="Description of first photo">
+<img src="images/photo2.jpeg" alt="Description of second photo">
+<img src="images/photo3.jpeg" alt="Description of third photo">-->
+ 
+  <!--
+    ============================================================
+    HEADER BACKGROUND IMAGE (flowers)
+    - To change the photo: edit the src below.
+    - To change the description: edit the alt below.
+    - To change WHICH PART of the photo shows: edit --hero-focus
+      in styles.css (only part of the photo is visible on purpose).
+    - To make the green tint lighter or darker: edit --hero-tint
+      in styles.css.
+    ============================================================
+  -->
+  <header id="home" class="hero bg-forest text-center py-5">
+    <!-- IMAGE: images/hero-flowers.jpg -> header background (loading="eager" because it is visible the moment the page opens) -->
+    <img src="" class="hero-img"
+         alt="Close-up of flowers in bloom"
+         loading="eager" decoding="async" width="1600" height="600">
+    <div class="container py-3 hero-content">
+      <!-- Hidden on screen, but screen readers and search engines still get a page title -->
+      <h1 class="visually-hidden">Angelica's About Me</h1>
+      <p class="lead mb-0">Aspiring Neurotech Researcher, willing to learn and grow</p>
+    </div>
+  </header>
+ 
+  <!--
+    ============================================================
+    SECTION BACKGROUNDS: HOW TO CHANGE THEM
+    Each <section> below has a background class. To change one,
+    swap the class name for any of these (defined in styles.css):
+        bg-charcoal  -> medium charcoal grey (the original look)
+        bg-slate     -> darker grey
+        bg-umber     -> warm dark brown-grey (autumn)
+        bg-moss      -> dark mossy green-grey
+    You can also add your own color in styles.css.
+    ============================================================
+  -->
+  <!-- REMINDER: each <section> below has an id that the navbar and footer link to. If you rename or move a section, update both places. -->
+  <main>
+ 
+    <!-- ABOUT ME -->
+    <section id="about" class="py-5 bg-charcoal">
+      <div class="container">
+        <h2 class="section-title mb-4">About Me</h2>
+        <div class="row g-4 align-items-start">
+  
+          <!-- This card holds ONLY the photo -->
+          <div class="col-10 col-sm-8 col-md-4 mx-auto mx-md-0">
+            <div class="card profile-card">
+              <!-- IMAGE: images/angelica.jpg -> About Me profile photo (square). On phones the card is centered and slightly narrower. -->
+              <img src="images/angelica.jpg" class="card-img" alt="Photo of Angelica">
+            </div>
+          </div>
+ 
+          <!-- Name info and story -->
+          <div class="col-12 col-md-8">
+            <h3 class="h2 mb-1">Introduction</h3>
+            <p class="text-muted-light mb-3">
+              San Francisco, CA &bull; Dev/Mission Pre-Apprentice
             </p>
-            <p><i class="bi bi-code"></i></p>
+ 
+            <p>
+              My curiosity began with environmental science and a love for nature. As I grew older, I
+              became intrigued by how our environmental surroundings affect our well-being and our
+              well-being. That curiosity has grown into a passion for understanding, and it
+              has led me through courses in Environmental Engineering, Psychology, Neuroscience, Biology,
+              and Technology.
+            </p>
             
-        </section>
-
-        <section id="section3">
-            <h2>Web App & IoT Final Project!</h2>
-            <p>#</p>
-        </section>
-        <section>
-            <h2>Department of Cell and Tissue Biology-UCSF</h2> 
-            <p>Working alongside Masters students, they shared knowledge in regards to sleep and memory consolidation through trained conditioning of C.elegans,
-                or microscopic worms. Our objective as a team was to remove a protein from C.elegans' brains and observe prolonged trainings to test if the worms
-                learned to stay repulsed to a certain smell. Sleep is extemely important for memory consolidation, and as researchers, we wanted to observe other 
-                conditions, if they are interrupted during their sleep, how capable are they of remembering their training?
-            <p> <a target="blank"
-            href="www.linkedin.com/in/angelicat295">Connect with me on Linkedin to collaborate and share knowledge!</a> </p>
-        </section>
-        <header>
-           
-    <footer>
-        <p>&copy; 2024 My Web Page. All rights reserved.
-
-        </p>
-
-        <p><i class="bi bi-envelope-open-heart"></i></p>
-    </footer>
-    </main>
-<script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+                 <p>
+              As a young Chicana from the Mission District in San Francisco, I have luckily experienced being surrounded
+              by others with strong senses of cultural pride. San Francisco contributed to so much of my personality with: farmers markets for fresh produce,
+              resources for my education (like Dev/Mission!), and many public spaces to enjoy the outdoors. 
+              As a retired picky eater, I told myself to try everything at least once, leading me to explore different cuisines and cultures. 
+              As a first generation college student, I pose the power to understand my culture and city's history, and to create a future for myself full of knowledge and growth.
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- PROJECTS: intro box (formerly "My Goals") + four cards, each with a landscape image, title with icon, and paragraph -->
+    <section id="projects" class="py-5 bg-umber">
+      <div class="container">
+        <h2 class="section-title mb-4">Projects</h2>
+ 
+        <!-- Intro box under the Projects title: an invitation to explore my projects and aspirations -->
+        <div class="projects-intro mb-4">
+          <h3 class="h4 accent-text">Explore My Projects &amp; Aspirations</h3>
+          <p>
+            I am a pre-apprentice at Dev/Mission, where I am learning HTML, CSS, and JavaScript, providing 
+            students with the ability to be creative within web development. I hope to combine my new tech skills with my interest in the brain and psychology to
+            contribute to research and development in neuroscience. 
+          </p>
+          <!-- TODO: finish this sentence, it was left unfinished in your draft -->
+          <p>
+            My focus on Neurotecnology comesfrom 
+          </p>
+          <p>
+            Take a look through the projects below to see how my education and my aspirations connect.
+          </p>
+        </div>
+ 
+        <!--
+          IMAGES IN THE CARDS BELOW:
+          loading="lazy"   -> the photo only loads when the visitor scrolls near it
+          alt="..."        -> describes the photo for screen readers
+          width / height   -> reserve space so the page doesn't jump while photos load
+          The CSS class landscape-img (in styles.css) makes each photo resize with the card.
+        -->
+        <div class="row g-4">
+ 
+          <!--
+            ADDING OR MOVING A PROJECT CARD:
+            Copy or move the WHOLE block (from <div class="col-12 col-md-6"> to its matching </div>).
+            Change the image src + alt, the title, the paragraph, and the icon.
+            Cards sit two per row on larger screens and one per row on phones.
+          -->
+ 
+          <!-- Project 1: Web App -->
+          <div class="col-12 col-md-6">
+            <div class="card project-card h-100">
+              <!-- IMAGE: images/project-webapp.jpg -> "SF based off your feelings" card (Project 1) -->
+              <img src="images/project-webapp.jpg" class="card-img-top landscape-img"
+                   alt="Screenshot of my web app project"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-code-slash"></i> SF based off your feelings</h3>
+                <p class="card-text">
+                  <!-- TODO: 2-3 sentences: what the app does, tools you used, what you learned. -->
+                  I love to walk around San Francisco with no purpose, randomly walk up to places and go in purely based off
+                  my feeling at the moment. I have stumbled onto so many places just by walking around and looking at decor, architecture, and menus. 
+                  I will be adding what I purchased and/or the my rating of the location. Through a thumb-up or thumb-down function, users will vote if they reccomend the location. 
+                I will be using HTML, CSS, and JavaScript to create this web app, all languages Dev/Mission has taught us.
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- Project 2: IoT -->
+          <div class="col-12 col-md-6">
+            <div class="card project-card h-100">
+              <!-- IMAGE: images/project-iot.jpg -> "IoT Project" card (Project 2) -->
+              <img src="images/project-iot.jpg" class="card-img-top landscape-img"
+                   alt="Photo of my IoT project"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-cpu"></i> IoT Project</h3>
+                <p class="card-text">
+                  <!-- TODO: 2-3 sentences: what the device does, sensors or hardware used, results. -->
+                  For my IoT project, I wanted to implement a device that would give a helping hand to my grandmother,
+                  who does not need to take the extra steps to check if the soil in her garden is dry or in need of water. 
+                   
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- Project 3: AI -->
+          <div class="col-12 col-md-6">
+            <div class="card project-card h-100">
+              <!-- IMAGE: images/project-rover.jpg -> "Remote Controlled Rover" card (Project 3) -->
+              <img src="images/project-rover.jpg" class="card-img-top landscape-img"
+                   alt="Engr7A, creating an autonomous rover"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-robot"></i> Remote Controlled Rover,Running CAME</h3>
+                <p class="card-text">
+                  <!-- TODO: 2-3 sentences: what problem it tackles, tools used, what you learned. -->
+                  Through an Engineering course at UCI, students learned and practiced the fundamentals of fabrication,
+                  soldering, and electrical engineering skills. 
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- Project 4: UCSF research -->
+          <div class="col-12 col-md-6">
+            <div class="card project-card h-100">
+              <!-- IMAGE: images/project-ucsf.jpg -> "Sleep & Memory Research" card (Project 4) -->
+              <img src="images/project-ucsf.jpg" class="card-img-top landscape-img"
+                   alt="Photo from my research at UCSF"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-bug"></i> Sleep &amp; Memory Research &ndash; UCSF</h3>
+                <h4 class="h6 text-muted-light">Department of Cell and Tissue Biology</h4>
+                <p class="card-text">
+                  Working alongside Master's students, I learned about sleep and memory consolidation
+                  through trained conditioning of <em>C. elegans</em>, microscopic worms. Our team
+                  removed a protein from the worms' brains and observed prolonged training to test
+                  whether they stayed repulsed by a certain smell. Since sleep is so important for
+                  memory, we also wanted to know: if the worms are interrupted during sleep, how well
+                  can they remember their training?
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+        </div>
+      </div>
+    </section>
+ 
+    <!-- HOBBIES: four cards + a photo carousel underneath -->
+    <section id="hobbies" class="py-5 bg-charcoal">
+      <div class="container">
+        <h2 class="section-title mb-4">Hobbies</h2>
+        <!-- REMINDER: hobby cards work like the project cards. Move or copy the whole col block, and update the image src, alt, icon, title, and text together. -->
+        <div class="row g-4">
+ 
+          <div class="col-12 col-md-6">
+            <div class="card hobby-card h-100">
+              <!-- IMAGE: images/hobby-bodybuilding.jpg -> "Bodybuilding" card -->
+              <img src="images/hobby-bodybuilding.jpg" class="card-img-top landscape-img"
+                   alt="Me bodybuilding"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-lightning-charge"></i> Bodybuilding</h3>
+                <p class="card-text">
+                  <!-- TODO: how long you have trained, your goals, what it has taught you. -->
+                  Bodybuilding 
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="col-12 col-md-6">
+            <div class="card hobby-card h-100">
+              <!-- IMAGE: images/hobby-yoga.jpg -> "Yoga" card -->
+              <img src="images/hobby-yoga.jpg" class="card-img-top landscape-img"
+                   alt="Me practicing yoga"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-flower1"></i> Yoga</h3>
+                <p class="card-text">
+                  <!-- TODO: your practice and what it does for you. -->
+                  Share what yoga means to you: your practice, how it balances your training, and
+                  how it supports your mind and well-being.
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="col-12 col-md-6">
+            <div class="card hobby-card h-100">
+              <!-- IMAGE: images/hobby-cooking.jpg -> "Cooking" card -->
+              <img src="images/hobby-cooking.jpg" class="card-img-top landscape-img"
+                   alt="A dish I cooked"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-egg-fried"></i> Cooking</h3>
+                <p class="card-text">
+                  <!-- TODO: favorite dishes, who taught you, family recipes. -->
+                  Write about your favorite things to cook, who you learned from, and the meals that
+                  feel like home.
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="col-12 col-md-6">
+            <div class="card hobby-card h-100">
+              <!-- IMAGE: images/hobby-thrifting.jpg -> "Thrifting & Flipping" card -->
+              <img src="images/hobby-thrifting.jpg" class="card-img-top landscape-img"
+                   alt="Thrifted finds"
+                   loading="lazy" decoding="async" width="800" height="450">
+              <div class="card-body">
+                <h3 class="card-title h5"><i class="bi bi-bag-heart"></i> Thrifting &amp; Flipping</h3>
+                <p class="card-text">
+                  <!-- TODO: favorite finds, where you shop, what you flip. -->
+                    Since 2019, I have had an instagram account dedicated to posting my closet: giving my 
+                    clothes a new home to fight overcompsumption and stay sustainable. Thrifting with a purpose
+                    has allowed me to be more creative with my style, allowing me to find unique pieces for myself or others.
+                    By making "bundle" options, I utilize my creativity to create outfits for others based on style. 
+                </p>
+              </div>
+            </div>
+          </div>
+ 
+        </div>
+ 
+        <!-- PHOTO CAROUSEL (IMAGES: images/gallery-1.jpg to images/gallery-8.jpg, one per slide, in order) -->
+        <div class="row justify-content-center mt-5">
+          <div class="col-12 col-lg-8">
+            <h3 class="h4 accent-text text-center mb-3">Photo Gallery</h3>
+ 
+            <div id="hobbyCarousel" class="carousel slide gallery-carousel">
+ 
+              <!-- Dots at the bottom: add one button per slide -->
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                <!-- Dots for the placeholder slides 5 to 8. If you delete a slide below, delete its dot too. -->
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="5"
+                        aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="6"
+                        aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#hobbyCarousel" data-bs-slide-to="7"
+                        aria-label="Slide 8"></button>
+              </div>
+ 
+              <!-- The slides: copy a carousel-item block to add more photos.
+                   Each new slide also needs a new dot button above, with data-bs-slide-to set to the
+                   next number (the count starts at 0) and a matching aria-label.
+                   The data-bs-target="#hobbyCarousel" on the dots and arrows must match the carousel's id.
+                   Only the FIRST slide has the class "active". -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/gallery-1.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 1"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 1</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-2.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 2"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 2</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-3.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 3"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 3</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-4.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 4"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 4</p>
+                  </div>
+                </div>
+ 
+                <!-- PLACEHOLDER SLIDES 5 to 8: add your photos as images/gallery-5.jpg to images/gallery-8.jpg.
+                     Update each alt and caption. If you don't need a slide, delete the whole carousel-item
+                     block AND its matching dot above, otherwise visitors will see an empty grey box. -->
+                <div class="carousel-item">
+                  <img src="images/gallery-5.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 5"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 5</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-6.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 6"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 6</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-7.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 7"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 7</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gallery-8.jpg" class="d-block w-100 carousel-img"
+                       alt="Gallery photo 8"
+                       loading="lazy" decoding="async" width="800" height="450">
+                  <div class="carousel-caption">
+                    <p class="mb-0">Caption for photo 8</p>
+                  </div>
+                </div>
+              </div>
+ 
+              <!-- Previous / Next arrows -->
+              <button class="carousel-control-prev" type="button"
+                      data-bs-target="#hobbyCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button"
+                      data-bs-target="#hobbyCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <!-- FOOTER: quick links to every section + contact info + copyright.
+       The id="contact" lets the navbar's "Contact Me" link scroll down to here. -->
+  <footer id="contact" class="bg-forest pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+ 
+        <!-- Links back to each section -->
+        <div class="col-12 col-md-6">
+          <h3 class="h5 footer-heading">Quick Links</h3>
+          <ul class="list-unstyled footer-links mb-0">
+            <li><a href="#home"><i class="bi bi-house"></i> Home</a></li>
+            <li><a href="#about"><i class="bi bi-person"></i> About Me</a></li>
+            <li><a href="#projects"><i class="bi bi-folder2-open"></i> Projects</a></li>
+            <li><a href="#hobbies"><i class="bi bi-heart"></i> Hobbies</a></li>
+          </ul>
+        </div>
+ 
+        <!-- Contact Me -->
+        <div class="col-12 col-md-6">
+          <h3 class="h5 footer-heading">Contact Me</h3>
+          <p class="mb-2">Let's collaborate and share knowledge!</p>
+          <ul class="list-unstyled footer-links mb-0">
+            <li>
+              <!-- TODO: replace with your real email address -->
+              <a href="mailto:your.email@example.com">
+                <i class="bi bi-envelope"></i> tovarangelica05@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/angelicat295" target="_blank" rel="noopener">
+                <i class="bi bi-linkedin"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <!-- TODO: replace YOUR-USERNAME with your GitHub username -->
+              <a href="https://github.com/angelicat09" target="_blank" rel="noopener">
+                <i class="bi bi-github"></i> GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+ 
+      </div>
+ 
+      <hr class="footer-divider">
+      <p class="text-center mb-0">&copy; 2026 Angelica. All rights reserved.</p>
+    </div>
+  </footer>
+ 
+  <!-- Bootstrap JS (needed for the hamburger menu and the carousel) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-   </html>
+</html>
+ 
